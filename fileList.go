@@ -3,15 +3,13 @@ package main
 import (
 	"path/filepath"
 	"os"
-	"log"
 )
 
 func fileList(root string) []string {
 	List := []string {}
-	err := filepath.Walk(root,
+	_ = filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
-				log.Println(err)
 				return nil
 			}
 
@@ -20,9 +18,6 @@ func fileList(root string) []string {
 			}
 			return nil
 		})
-	if err != nil {
-		log.Println(err)
-	}
 	
 	return List
 }
