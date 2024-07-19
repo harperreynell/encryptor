@@ -6,9 +6,9 @@ import (
 	"log"
 )
 
-func fileList() []string {
+func fileList(root string) []string {
 	List := []string {}
-	err := filepath.Walk("/",
+	err := filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				log.Println(err)
