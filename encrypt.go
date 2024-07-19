@@ -8,18 +8,34 @@ import (
 	"io/ioutil"
 )
 
-func encrypt(filename string, key []byte) {
-	plainText, _ := ioutil.ReadFile(filename)
+func encrypt(filename string, key []byte) error {
+	plainText, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return err
+	}
 
-	block, _ := aes.NewCipher(key)
-
-	gcm, _ := cipher.NewGCM(block)
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return err
+	}
 	
+	gcm, err := cipher.NewGCM(block)
+	if err != nil {
+		return err
+	}
 	nonce := make([]byte, gcm.NonceSize())
 	
-	_, _ = io.ReadFull(rand.Reader, nonce)
-
+	_, err = io.ReadFull(rand.Reader, nonce)
+	if err != nil {
+		return err
+	}
+	
 	cipherText := gcm.Seal(nonce, nonce, plainText, nil)
 	
-	_ = ioutil.WriteFile(filename, cipherText, 0700)
+	err = ioutil.WriteFile(filename, cipherText, 0700)
+	if err != nil {
+		return err
+	}
+	
+	return nil
 }
