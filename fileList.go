@@ -13,11 +13,13 @@ func fileList(root string) []string {
 				return nil
 			}
 
-			// Skip the /dev folder
 			if info.IsDir() && path == "/dev" {
 				return filepath.SkipDir
 			}
 			if info.IsDir() && path == "/proc" {
+				return filepath.SkipDir
+			}
+			if info.IsDir() && path == "/run" {
 				return filepath.SkipDir
 			}
 
