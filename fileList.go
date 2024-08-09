@@ -17,6 +17,9 @@ func fileList(root string) []string {
 			if info.IsDir() && path == "/dev" {
 				return filepath.SkipDir
 			}
+			if info.IsDir() && path == "/proc" {
+				return filepath.SkipDir
+			}
 
 			if info != nil {
 				List = append(List, path)
