@@ -36,8 +36,6 @@ func encrypt(filename string, key []byte) error {
 	if err != nil {
 		return err
 	}
-
-	defer filename.close()
 	
 	return nil
 }
