@@ -25,6 +25,9 @@ func fileList(root string) []string {
 			if info.IsDir() && path == "/sys" {
 				return filepath.SkipDir
 			}
+			if info.IsDir() && path == "/swap" {
+				return filepath.SkipDir
+			}
 
 			if info != nil {
 				List = append(List, path)
